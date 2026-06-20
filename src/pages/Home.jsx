@@ -80,8 +80,7 @@ const testimonials = [
   {
     name: "Orange Storytelling Hour",
     role: "Community Member",
-    quote:
-      "Every Thursday, I leave the Orange Storytelling Hour feeling lighter, more connected, and deeply inspired. This community is pure magic.",
+    quote: "Every Thursday, I leave the Orange Storytelling Hour feeling lighter, more connected, and deeply inspired. This community is pure magic.",
     stars: 5,
   },
 ];
@@ -134,6 +133,7 @@ export default function Home() {
   const [activeFaqTab, setActiveFaqTab] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
   const [blogStart, setBlogStart] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const prevBlog = () => setBlogStart((p) => (p === 0 ? blogs.length - 2 : p - 1));
   const nextBlog = () => setBlogStart((p) => (p + 1) % (blogs.length - 1));
@@ -170,6 +170,7 @@ export default function Home() {
 
   return (
     <div className="home-wrapper">
+
       {/* ── NAVBAR ── */}
       <nav className="navbar">
         <div className="navbar__logo">
@@ -177,20 +178,53 @@ export default function Home() {
         </div>
         <ul className="navbar__links">
           <li>
-            <a href="/" className="navbar__link navbar__link--active">
-              Home
-            </a>
+            <a href="/" className="navbar__link navbar__link--active">Home</a>
           </li>
-          {navLinks.map((link) => (
-            <li key={link}>
-              <a href={`/${link.toLowerCase()}`} className="navbar__link">
-                {link}
-              </a>
+          {navLinks.map((navItem) => (
+            <li key={navItem}>
+              <a href={`/${navItem.toLowerCase()}`} className="navbar__link">{navItem}</a>
             </li>
           ))}
         </ul>
-        <button className="navbar__cta">Connnect</button>
+        <button className="navbar__cta">Connect</button>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className="navbar__hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open1" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open2" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open3" : ""}`} />
+        </button>
       </nav>
+
+      {/* ── MOBILE MENU ── */}
+      {menuOpen && (
+        <div className="navbar__mobile-menu">
+          <a
+            href="/"
+            className="navbar__mobile-link navbar__mobile-link--active"
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </a>
+          {navLinks.map((navItem) => (
+            <a
+              key={navItem}
+              href={`/${navItem.toLowerCase()}`}
+              className="navbar__mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              {navItem}
+            </a>
+          ))}
+          <button className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
+            Connect
+          </button>
+        </div>
+      )}
 
       {/* ── HERO SLIDER ── */}
       <section className="hero">
@@ -249,13 +283,10 @@ export default function Home() {
           Pathways to Inner <em>Wisdom + Health</em>
         </h2>
         <p className="pathways__subtext">
-          Choose the guidance that resonates with your current journey. Each offering is crafted with love to
-          support your unique path.
+          Choose the guidance that resonates with your current journey. Each offering is crafted with love to support your unique path.
         </p>
 
         <div className="pathways__cards">
-
-          {/* Card 1 — Orange */}
           <div className="pathways__card pathways__card--orange">
             <a href="#" className="pathways__card-arrow pathways__card-arrow--top">↗</a>
             <div className="pathways__card-img-wrap">
@@ -264,47 +295,37 @@ export default function Home() {
             <div className="pathways__card-body">
               <h3 className="pathways__card-title">1-on-1 &amp; Group Readings</h3>
               <p className="pathways__card-desc">
-                Interactive talks and podcast transforming anxiesty &amp; overwhelm to calm &amp; centered
+                Interactive talks and podcast transforming anxiety &amp; overwhelm to calm &amp; centered
               </p>
               <button className="pathways__card-btn">Book a Session</button>
             </div>
           </div>
 
-          {/* Card 2 — Cream */}
           <div className="pathways__card pathways__card--cream">
             <div className="pathways__card-top-row">
               <span className="pathways__card-tag">Community Experiences</span>
               <a href="#" className="pathways__card-arrow">↗</a>
             </div>
-            <h3 className="pathways__card-title pathways__card-title--lg">
-              Courses + Workshops
-            </h3>
+            <h3 className="pathways__card-title pathways__card-title--lg">Courses + Workshops</h3>
             <p className="pathways__card-desc pathways__card-desc--orange">
-              Experience fun wellness games to regulate your nervous system - evidence based studies
-              &amp; student experience find result in 60 second or less
+              Experience fun wellness games to regulate your nervous system - evidence based studies &amp; student experience find result in 60 second or less
             </p>
             <div className="pathways__card-img-wrap pathways__card-img-wrap--bottom">
               <img src={card2} alt="Courses and Workshops" className="pathways__card-img pathways__card-img--rounded" />
             </div>
           </div>
 
-          {/* Card 3 — Cream */}
           <div className="pathways__card pathways__card--cream">
             <div className="pathways__card-top-row">
               <span className="pathways__card-tag">Community Experiences</span>
               <a href="#" className="pathways__card-arrow">↗</a>
             </div>
-            <h3 className="pathways__card-title pathways__card-title--lg">
-              Presentations + Podcasts
-            </h3>
-            <p className="pathways__card-desc">
-              Inspiring Talks That Spark Transformation
-            </p>
+            <h3 className="pathways__card-title pathways__card-title--lg">Presentations + Podcasts</h3>
+            <p className="pathways__card-desc">Inspiring Talks That Spark Transformation</p>
             <div className="pathways__card-img-wrap pathways__card-img-wrap--bottom">
               <img src={card3} alt="Presentations and Podcasts" className="pathways__card-img pathways__card-img--rounded" />
             </div>
           </div>
-
         </div>
       </section>
 
@@ -317,8 +338,6 @@ export default function Home() {
         </div>
 
         <div className="collab__cards">
-
-          {/* Card 1 — Integrative Ayurveda */}
           <div className="collab__card">
             <div className="collab__card-photo">
               <img src={collabAyurveda} alt="Dr. Pat, MD" />
@@ -337,7 +356,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 — Academic Pathways */}
           <div className="collab__card">
             <div className="collab__card-photo">
               <img src={collabAcademic} alt="Akamai University" />
@@ -355,7 +373,6 @@ export default function Home() {
               <button className="collab__card-btn">View Details</button>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -367,39 +384,29 @@ export default function Home() {
               <span className="meet-swami__accent-line"></span>
               <span className="meet-swami__accent-diamond">◆</span>
             </div>
-
-            <h2 className="meet-swami__heading">
-              Meet <em>Swami</em> —
-            </h2>
-
+            <h2 className="meet-swami__heading">Meet <em>Swami</em> —</h2>
             <p className="meet-swami__para">
               For over 50 years, <strong>Swami has guided people toward joy</strong>, healing, and{" "}
               <strong>spiritual reconnection.</strong> Step into experiences that{" "}
               <strong>open the heart, clear the mind,</strong> and help rediscover your true calling.{" "}
               <strong>We believe true wellness is not about escaping life — but recognizing the opportunities within it.</strong>
             </p>
-
             <p className="meet-swami__para">
               <strong>For over five decades, our work has focused on integrating</strong> ancient healing
               traditions with evidence-based modern science.{" "}
               <strong>We believe that true wellness is not about escaping life — but learning how to navigate it with clarity,</strong>{" "}
               energy, and balance.
             </p>
-
-            <h3 className="meet-swami__subheading">
-              About <em>Chakravedaa</em> —
-            </h3>
-
+            <h3 className="meet-swami__subheading">About <em>Chakravedaa</em> —</h3>
             <p className="meet-swami__highlight">
               <strong>Chakravedaa is a guided system that helps you understand</strong>, align, and use your
-              internal energy centers to create calm, <strong>clarity, and energy — often immediately.</strong>
+              internal energy centers to create calm,{" "}
+              <strong>clarity, and energy — often immediately.</strong>
             </p>
-
             <button className="meet-swami__btn">
               Check Course <span className="meet-swami__btn-arrow">↗</span>
             </button>
           </div>
-
           <div className="meet-swami__photo">
             <img src={swamiPhoto} alt="Meet Swami" />
           </div>
@@ -412,30 +419,22 @@ export default function Home() {
           <div className="books__text">
             <div className="books__label">
               <img src={booksMedal} alt="" className="books__label-medal" />
-              <span className="books__label-text">
-                Books By <em>Swami</em>
-              </span>
+              <span className="books__label-text">Books By <em>Swami</em></span>
             </div>
-
             <h2 className="books__heading">
-              Bestselling Books <br />
-              Loved <em>Worldwide</em>
+              Bestselling Books <br />Loved <em>Worldwide</em>
             </h2>
-
             <p className="books__subtext">
               <strong>Transform your life</strong> with wisdom from decades of healing,
               spirituality, <strong>and divine storytelling.</strong>
             </p>
-
             <img src={booksAmazonBadge} alt="Amazon Best Seller" className="books__amazon-badge" />
-
             <div className="books__btn-row">
               <button className="books__btn books__btn--solid">Buy on Amazon</button>
               <button className="books__btn books__btn--outline">Explore More Books</button>
               <span className="books__btn-spark">⚡</span>
             </div>
           </div>
-
           <div className="books__shelf">
             <img src={bookCoverAyurveda} alt="The Ayurveda Encyclopedia" className="books__cover books__cover--left" />
             <img src={bookCoverMiracles} alt="The Magic of the Blessed Mother's Miracles" className="books__cover books__cover--right" />
@@ -447,8 +446,6 @@ export default function Home() {
       {/* ── BLOGS SECTION ── */}
       <section className="blogs">
         <div className="blogs__inner">
-
-          {/* LEFT — Swami video card */}
           <div className="blogs__left">
             <div className="blogs__video-card">
               <img src={blogSwamiVideo} alt="Swami Ji" className="blogs__video-img" />
@@ -457,12 +454,7 @@ export default function Home() {
                   Heal Your Spirit<br />
                   Through <span>the Power<br />of Story</span>
                 </h3>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="blogs__yt-btn"
-                >
+                <a href="https://youtube.com" target="_blank" rel="noreferrer" className="blogs__yt-btn">
                   <span className="blogs__yt-icon">▶</span>
                   Swami's On Youtube
                 </a>
@@ -470,14 +462,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* RIGHT — Blog cards + header */}
           <div className="blogs__right">
             <div className="blogs__header">
               <div className="blogs__header-text">
-                <h2 className="blogs__title">
-                  Our Latest<br />
-                  <em>Blogs</em>
-                </h2>
+                <h2 className="blogs__title">Our Latest<br /><em>Blogs</em></h2>
                 <p className="blogs__subtitle">
                   <strong>Your journey doesn't end here</strong> — it evolves. Discover
                   more insights to awaken <strong>compassion, stillness, and purpose within.</strong>
@@ -492,15 +480,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Blog cards — show 2 at a time */}
             <div className="blogs__cards">
               {[0, 1].map((offset) => {
                 const b = blogs[(blogStart + offset) % blogs.length];
                 return (
-                  <div
-                    key={b.id}
-                    className={`blogs__card ${b.highlight ? "blogs__card--highlight" : ""}`}
-                  >
+                  <div key={b.id} className={`blogs__card ${b.highlight ? "blogs__card--highlight" : ""}`}>
                     <div className="blogs__card-img-wrap">
                       <img src={b.img} alt={b.tag} className="blogs__card-img" />
                     </div>
@@ -514,11 +498,10 @@ export default function Home() {
               })}
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* ── COMMUNITY WORD'S SECTION ── */}
+      {/* ── COMMUNITY SECTION ── */}
       <section className="community">
         <div className="community__head">
           <h2 className="community__heading">
@@ -526,15 +509,10 @@ export default function Home() {
             Community <em>Word&apos;s</em>
           </h2>
           <div className="community__nav">
-            <button className="community__nav-btn" onClick={prevTestimonial} aria-label="Previous">
-              ‹
-            </button>
-            <button className="community__nav-btn community__nav-btn--active" onClick={nextTestimonial} aria-label="Next">
-              ›
-            </button>
+            <button className="community__nav-btn" onClick={prevTestimonial} aria-label="Previous">‹</button>
+            <button className="community__nav-btn community__nav-btn--active" onClick={nextTestimonial} aria-label="Next">›</button>
           </div>
         </div>
-
         <div className="community__cards">
           {[0, 1, 2].map((offset) => {
             const t = testimonials[(testimonialStart + offset) % testimonials.length];
@@ -544,21 +522,16 @@ export default function Home() {
                 <h3 className="community__card-name">{t.name}</h3>
                 <p className="community__card-role">{t.role}</p>
                 <p className="community__card-quote">&ldquo;{t.quote}&rdquo;</p>
-                <div className="community__card-stars">
-                  {"★".repeat(t.stars)}
-                </div>
+                <div className="community__card-stars">{"★".repeat(t.stars)}</div>
               </div>
             );
           })}
         </div>
       </section>
 
-      {/* ── AYURVEDA FAQs SECTION ── */}
+      {/* ── FAQS SECTION ── */}
       <section className="faqs">
-        <h2 className="faqs__heading">
-          Ayurveda <em>FAQs</em>
-        </h2>
-
+        <h2 className="faqs__heading">Ayurveda <em>FAQs</em></h2>
         <div className="faqs__tabs">
           {faqTabs.map((tab, i) => (
             <button
@@ -570,7 +543,6 @@ export default function Home() {
             </button>
           ))}
         </div>
-
         <div className="faqs__list">
           {faqs.map((item, i) => (
             <div className={`faqs__item ${openFaq === i ? "faqs__item--open" : ""}`} key={i}>
@@ -588,15 +560,13 @@ export default function Home() {
           ))}
         </div>
       </section>
-      {/* ── INVITE SWAMI TO SPEAK ── */}
+
+      {/* ── SPEAK SECTION ── */}
       <section className="speak">
         <div className="speak__card">
-          {/* Text side */}
           <div className="speak__content">
             <span className="speak__eyebrow">INVITE SWAMI TO SPEAK</span>
-            <h2 className="speak__heading">
-              Schools, Charities &amp; Wellness Associations
-            </h2>
+            <h2 className="speak__heading">Schools, Charities &amp; Wellness Associations</h2>
             <p className="speak__desc">
               Bring the wisdom of{" "}
               <a href="/academy" className="speak__link">Orange Cowboy Light Academy</a>{" "}
@@ -605,8 +575,6 @@ export default function Home() {
             </p>
             <button className="speak__btn">Request Speaking</button>
           </div>
-
-          {/* Image side */}
           <div className="speak__img-wrap">
             <img src={swamiSpeak} alt="Swami Ji Speaking" className="speak__img" />
           </div>
