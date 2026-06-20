@@ -572,10 +572,13 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Updated: icon is now an <img> (uploaded vata/pitta/kapha images), not emoji */
 .ac-dosha__card-icon {
-  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
   display: block;
-  margin-bottom: 8px;
+  margin: 0 auto 8px;
 }
 
 .ac-dosha__card-element {
