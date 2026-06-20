@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "./Academy.css";
+import logo from "../assets/logo.png";
 import academyHero from "../assets/academy-hero.jpg";
 import academyMeditation from "../assets/academy-meditation.jpg";
 import academyChakraveda from "../assets/academy-chakraveda.png";
 import academyConsultation from "../assets/academy-consultation.png";
 import academyHands from "../assets/academy-hands.png";
 import academySwamiOrange from "../assets/academy-swami-orange.png";
+
+const navLinks = ["Service", "Books", "Products", "Academy", "Blog", "Contact"];
 
 /* ── Data ── */
 const streamingCourses = [
@@ -135,9 +138,70 @@ const instantCourses = [
 
 export default function Academy() {
   const [activePlaylist, setActivePlaylist] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="academy">
+
+      {/* ── NAVBAR ── */}
+      <nav className="navbar">
+        <div className="navbar__logo">
+          <img src={logo} alt="Orange Cowboy Logo" />
+        </div>
+        <ul className="navbar__links">
+          <li>
+            <a href="/" className="navbar__link">Home</a>
+          </li>
+          {navLinks.map((navItem) => (
+            <li key={navItem}>
+              <a
+                href={`/${navItem.toLowerCase()}`}
+                className={`navbar__link ${navItem === "Academy" ? "navbar__link--active" : ""}`}
+              >
+                {navItem}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <button className="navbar__cta">Connect</button>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className="navbar__hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open1" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open2" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open3" : ""}`} />
+        </button>
+      </nav>
+
+      {/* ── MOBILE MENU ── */}
+      {menuOpen && (
+        <div className="navbar__mobile-menu">
+          <a
+            href="/"
+            className="navbar__mobile-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </a>
+          {navLinks.map((navItem) => (
+            <a
+              key={navItem}
+              href={`/${navItem.toLowerCase()}`}
+              className={`navbar__mobile-link ${navItem === "Academy" ? "navbar__mobile-link--active" : ""}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {navItem}
+            </a>
+          ))}
+          <button className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
+            Connect
+          </button>
+        </div>
+      )}
 
       {/* ── HERO ── */}
       <section className="ac-hero">
