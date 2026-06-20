@@ -1512,3 +1512,140 @@
     width: 200px;
   }
 }
+/* ═══════════════════════════════════════
+   ACADEMY RESPONSIVE — ENHANCED
+═══════════════════════════════════════ */
+
+/* Large tablet */
+@media (max-width: 1200px) {
+  .ac-container { padding: 0 32px; }
+  .ac-streaming__grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .ac-instant__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  /* Hero */
+  .ac-hero__title { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+  .ac-hero__watch-btn { bottom: 24px; right: 24px; }
+
+  /* Streaming */
+  .ac-streaming__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+
+  /* Dosha */
+  .ac-dosha__cards { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto 28px; }
+
+  /* Playlist */
+  .ac-playlist-section__grid { grid-template-columns: 1fr; gap: 28px; }
+  .ac-featured-video { max-width: 100%; }
+
+  /* Media */
+  .ac-media__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Instant */
+  .ac-instant__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Speak */
+  .ac-speak__card { padding: 32px 28px; gap: 24px; }
+  .ac-speak__img-wrap { width: 200px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  /* Hero */
+  .ac-hero { min-height: 70vh; }
+  .ac-hero__content { bottom: 60px; left: 20px; right: 20px; }
+  .ac-hero__title { font-size: 1.5rem; }
+  .ac-hero__sub { font-size: 12px; }
+  .ac-hero__watch-btn {
+    bottom: 16px;
+    right: 16px;
+    font-size: 13px;
+    padding: 10px 18px;
+  }
+
+  /* Streaming */
+  .ac-streaming { padding: 48px 0; }
+  .ac-streaming__heading { font-size: 1.7rem; }
+  .ac-streaming__grid { grid-template-columns: 1fr; max-width: 100%; }
+  .ac-course-card { padding: 24px 20px; }
+
+  /* Dosha */
+  .ac-dosha { padding: 48px 0; }
+  .ac-dosha__heading { font-size: 1.5rem; }
+  .ac-dosha__cards { grid-template-columns: 1fr; max-width: 100%; }
+  .ac-dosha__card { padding: 28px 24px; }
+  .ac-dosha__cta-box { padding: 28px 20px; }
+
+  /* Playlist */
+  .ac-playlist-section { padding: 48px 0; }
+  .ac-playlist-section__grid { grid-template-columns: 1fr; }
+  .ac-playlist { padding: 0; }
+  .ac-featured-video { border-radius: 16px; }
+
+  /* Media */
+  .ac-media { padding: 48px 0; }
+  .ac-media__grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .ac-media__header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  /* Chakra */
+  .ac-chakra__content { padding: 48px 20px; }
+  .ac-chakra__title { font-size: 2.2rem; }
+  .ac-chakra__desc { font-size: 13px; }
+  .ac-chakra__btns { flex-direction: column; align-items: center; gap: 12px; }
+  .ac-chakra__btn-primary,
+  .ac-chakra__btn-outline { width: 100%; max-width: 280px; justify-content: center; }
+  .ac-chakra__stats { gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  /* Instant */
+  .ac-instant { padding: 48px 0; }
+  .ac-instant__grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .ac-instant__heading { font-size: 1.7rem; }
+
+  /* Speak */
+  .ac-speak { padding: 40px 0 56px; }
+  .ac-speak__card {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 28px 20px;
+    gap: 16px;
+  }
+  .ac-speak__img-wrap { width: 160px; margin: 0 auto; }
+  .ac-speak__heading { font-size: 20px; }
+  .ac-speak__btn { margin: 0 auto; }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .ac-container { padding: 0 16px; }
+
+  /* Hero */
+  .ac-hero__title { font-size: 1.3rem; }
+
+  /* Streaming */
+  .ac-course-card { padding: 20px 16px; }
+  .ac-course-card__title { font-size: 1rem; }
+
+  /* Dosha */
+  .ac-dosha__heading { font-size: 1.3rem; }
+  .ac-dosha__card-name { font-size: 1.4rem; }
+
+  /* Media */
+  .ac-media__grid { max-width: 100%; }
+
+  /* Chakra */
+  .ac-chakra__title { font-size: 1.8rem; }
+  .ac-chakra__stats { gap: 12px; }
+  .ac-chakra__stat-num { font-size: 1.5rem; }
+
+  /* Instant */
+  .ac-instant__grid { max-width: 100%; }
+  .ac-instant__card-title { font-size: 0.95rem; }
+  .ac-instant__card-btn { min-height: 44px; }
+}
+
+/* Very small */
+@media (max-width: 360px) {
+  .ac-hero__title { font-size: 1.15rem; }
+  .ac-chakra__title { font-size: 1.5rem; }
+}
