@@ -1,126 +1,232 @@
-import React, { useState } from "react";
-import { submitContactForm } from "../firebase/services";
+import { useState } from "react";
 import "./Contact.css";
+import contactTree from "../assets/Frame_1410552639.png";
+import { submitContactForm } from "../firebase/services";
 
-const Contact = () => {
-  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle");
+export default function Contact() {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = async () => {
-    if (!form.firstName || !form.email || !form.message) {
-      alert("Please fill in required fields.");
-      return;
-    }
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setStatus("loading");
     try {
       await submitContactForm(form);
       setStatus("success");
       setForm({ firstName: "", lastName: "", email: "", message: "" });
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("Firebase Error:", error);
       setStatus("error");
     }
   };
 
   return (
-    <div className="contact-page">
+    <div className="contact">
 
-      {/* HERO */}
-      <section className="contact-hero">
-        <h1 className="contact-hero-title">
-          Let's <span className="orange-italic">Connect</span> with{" "}
-          <em className="cursive">Love &amp; Joy</em>
+      {/* ── HERO HEADING ── */}
+      <section className="contact__hero">
+        <h1 className="contact__hero-title">
+          Let's <span className="contact__orange">Connect</span> with{" "}
+          <em className="contact__italic">Love &amp; Joy</em>{" "}
+          <span className="contact__spark">✦</span>
         </h1>
-        <p className="contact-hero-sub">
-          Have a question, want to share your story, or interested in joining
-          our community? We'd love to hear from you.
+        <p className="contact__hero-sub">
+          Have a question, want to share your story, or interested in
+          joining our community? We'd love to hear from you.
         </p>
+        <div className="contact__divider">
+          <span />
+          <span className="contact__divider-diamond">✦</span>
+          <span />
+        </div>
       </section>
 
-      {/* FORM */}
-      <section className="contact-form-section">
-        <div className="contact-form-container">
+      {/* ── FORM + IMAGE ── */}
+      <section className="contact__body">
+        <div className="contact__container">
 
-          <div className="contact-left">
-            <div className="contact-quote-img">
-              <blockquote className="contact-quote">
-                "I am listening with an open heart. Speak freely."
-                <cite>— Swami Tirtha</cite>
-              </blockquote>
-            </div>
+          {/* Left: Tree image */}
+          <div className="contact__img-wrap">
+            <img src={contactTree} alt="Tree" className="contact__img" />
           </div>
 
-          <div className="contact-right">
-            <div className="form-bg-text" aria-hidden>SWAMI</div>
-            <h2 className="form-title">Send a Message</h2>
-            <p className="form-hint">Fields marked with * are required</p>
+          {/* Right: Form */}
+          <div className="contact__form-wrap">
+            <h2 className="contact__form-title">Send a Message</h2>
+            <p className="contact__form-sub">
+              Fields marked with <span className="contact__req">*</span> are required.
+            </p>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label>Your Name *</label>
-                <input type="text" name="firstName" placeholder="Enter your name" value={form.firstName} onChange={handleChange} />
+            <form className="contact__form" onSubmit={handleSubmit}>
+              <div className="contact__row">
+                <div className="contact__field">
+                  <label className="contact__label">Your Name</label>
+                  <input
+                    className="contact__input"
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter your name"
+                    value={form.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="contact__field">
+                  <label className="contact__label">Last Name</label>
+                  <input
+                    className="contact__input"
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter your name"
+                    value={form.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Last Name</label>
-                <input type="text" name="lastName" placeholder="Enter your name" value={form.lastName} onChange={handleChange} />
+
+              <div className="contact__field">
+                <label className="contact__label">Email Address</label>
+                <input
+                  className="contact__input"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
               </div>
-            </div>
 
-            <div className="form-group">
-              <label>Email Address *</label>
-              <input type="email" name="email" placeholder="Enter your email" value={form.email} onChange={handleChange} />
-            </div>
+              <div className="contact__field">
+                <label className="contact__label">
+                  Message <span className="contact__req">*</span>
+                </label>
+                <textarea
+                  className="contact__textarea"
+                  name="message"
+                  placeholder="How can I serve / help today..."
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={5}
+                  required
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Message *</label>
-              <textarea name="message" placeholder="How can swami ji help today" rows={5} value={form.message} onChange={handleChange} />
-            </div>
+              {/* Social icons row */}
+              <div className="contact__socials">
+                <a href="#" className="contact__social-btn" aria-label="Facebook">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
+                </a>
+                <a href="#" className="contact__social-btn" aria-label="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                  </svg>
+                </a>
+                <a href="#" className="contact__social-btn" aria-label="YouTube">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
+                  </svg>
+                </a>
+              </div>
 
-            <div className="form-socials">
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="social-icon">f</a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-icon">ig</a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" className="social-icon">▶</a>
-            </div>
+              {status === "success" && (
+                <div className="contact__success">
+                  ✅ Message sent! We'll get back to you soon.
+                </div>
+              )}
+              {status === "error" && (
+                <div className="contact__error">
+                  ❌ Something went wrong. Please try again.
+                </div>
+              )}
 
-            {status === "success" && <p className="form-success">✅ Message sent! Swami ji will get back to you soon.</p>}
-            {status === "error" && <p className="form-error">Something went wrong. Please try again.</p>}
-
-            <button className="btn-send" onClick={handleSubmit} disabled={status === "loading"}>
-              {status === "loading" ? "Sending..." : "Send Message"}
-            </button>
+              <button
+                className="contact__submit"
+                type="submit"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Sending..." : "Send Message"}
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
-      {/* SOCIALS */}
-      <section className="socials-section">
-        <div className="socials-bg-text" aria-hidden>Connect</div>
-        <h2 className="socials-title">Connect <span className="orange-italic">On Socials</span><span className="leaf">🌿</span></h2>
-        <p className="socials-sub">Join the community on your favorite platform</p>
+      {/* ── CONNECT ON SOCIALS ── */}
+      <section className="contact__socials-section">
+        <h2 className="contact__socials-title">
+          Connect <em className="contact__orange contact__italic">On Socials</em>
+          <span className="contact__spark"> ✦</span>
+        </h2>
+        <p className="contact__socials-sub">Join the community on your favorite platform</p>
+        <div className="contact__divider">
+          <span /><span className="contact__divider-diamond">✦</span><span />
+        </div>
 
-        <div className="socials-cards">
-          <div className="social-card">
-            <div className="social-thumb youtube" />
-            <h3>Orange Cowboy Channel</h3>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" className="social-card-btn">SUBSCRIBE →</a>
-          </div>
-          <div className="social-card">
-            <div className="social-thumb instagram" />
-            <h3>Swami Profile</h3>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-card-btn">CONNECT →</a>
-          </div>
-          <div className="social-card">
-            <div className="social-thumb email" />
-            <h3>contact@orangecowboy.com</h3>
-            <a href="mailto:contact@orangecowboy.com" className="social-card-btn">TEXT →</a>
-          </div>
+        <div className="contact__socials-grid">
+          {[
+            {
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
+                </svg>
+              ),
+              name: "Orange Cowboy Channel",
+              handle: "Subscribe",
+              link: "#",
+            },
+            {
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+                </svg>
+              ),
+              name: "Swami Profile",
+              handle: "Connect",
+              link: "#",
+            },
+            {
+              icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              ),
+              name: "contact@orangecowboy.com",
+              handle: "Email",
+              link: "mailto:contact@orangecowboy.com",
+            },
+          ].map((s, i) => (
+            <div key={i} className="contact__social-card">
+              <div className="contact__social-card-icon">{s.icon}</div>
+              <div className="contact__social-card-name">{s.name}</div>
+              <a href={s.link} className="contact__social-card-handle">
+                {s.handle} ↗
+              </a>
+            </div>
+          ))}
         </div>
       </section>
 
     </div>
   );
-};
-
-export default Contact;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +21,9 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-inner">
         <Link to="/" className="nav-logo">
-          <div className="logo-icon">🌅</div>
+          <div className="logo-icon">
+            <img src={logo} alt="OrangeCowboy Logo" />
+          </div>
           <div className="logo-text">
             <span className="logo-main">OrangeCowboy</span>
             <span className="logo-sub">Light Academy</span>

@@ -5,6 +5,7 @@ export const submitContactForm = async (formData) => {
   const docRef = await addDoc(collection(db, "contacts"), {
     ...formData,
     createdAt: serverTimestamp(),
+    status: "unread",
   });
   return docRef.id;
 };
