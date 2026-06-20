@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./Contact.css";
+import logo from "../assets/logo.png";
 import contactTree from "../assets/Frame_1410552639.png";
 import { submitContactForm } from "../firebase/services";
+
+const navLinks = ["Service", "Books", "Products", "Academy", "Blog", "Contact"];
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -16,6 +19,7 @@ export default function Contact() {
   };
 
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +36,66 @@ export default function Contact() {
 
   return (
     <div className="contact">
+
+      {/* ── NAVBAR ── */}
+      <nav className="navbar">
+        <div className="navbar__logo">
+          <img src={logo} alt="Orange Cowboy Logo" />
+        </div>
+        <ul className="navbar__links">
+          <li>
+            <a href="/" className="navbar__link">Home</a>
+          </li>
+          {navLinks.map((navItem) => (
+            <li key={navItem}>
+              <a
+                href={`/${navItem.toLowerCase()}`}
+                className={`navbar__link ${navItem === "Contact" ? "navbar__link--active" : ""}`}
+              >
+                {navItem}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <button className="navbar__cta">Connect</button>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className="navbar__hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open1" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open2" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open3" : ""}`} />
+        </button>
+      </nav>
+
+      {/* ── MOBILE MENU ── */}
+      {menuOpen && (
+        <div className="navbar__mobile-menu">
+          <a
+            href="/"
+            className="navbar__mobile-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </a>
+          {navLinks.map((navItem) => (
+            <a
+              key={navItem}
+              href={`/${navItem.toLowerCase()}`}
+              className={`navbar__mobile-link ${navItem === "Contact" ? "navbar__mobile-link--active" : ""}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {navItem}
+            </a>
+          ))}
+          <button className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
+            Connect
+          </button>
+        </div>
+      )}
 
       {/* ── HERO HEADING ── */}
       <section className="contact__hero">
