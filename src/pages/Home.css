@@ -401,6 +401,12 @@ body {
   gap: 6px;
   margin-bottom: 20px;
 }
+.pathways__label-spark {
+  position: absolute;
+  top: -10px;
+  right: -22px;
+  transform: rotate(-8deg);
+}
 
 .pathways__label-wrap img {
   position: absolute;
@@ -422,6 +428,7 @@ body {
   color: #FF5900;
   box-shadow: none;
   letter-spacing: 0.01em;
+  position: relative;
 }
 
 /* Heading */
