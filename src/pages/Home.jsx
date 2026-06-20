@@ -17,7 +17,6 @@ import bookCoverAyurveda from "../assets/book-cover-ayurveda.png";
 import bookCoverMiracles from "../assets/book-cover-miracles.png";
 import blogSwamiVideo from "../assets/Rectangle_7__1_.png";
 import blogCard1Img from "../assets/Group_21__1_.png";
-import sparkVector from "../assets/Vector.svg";
 
 const slides = [
   {
@@ -189,7 +188,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        <button className="navbar__cta">Connnect</button>
+        <button className="navbar__cta">Connect</button>
       </nav>
 
       {/* ── HERO SLIDER ── */}
@@ -245,7 +244,9 @@ export default function Home() {
             </svg>
             <span>Swami Services</span>
           </div>
-          <img src={sparkVector} alt="" width={30} />
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2L13.5 9.5L21 11L13.5 12.5L12 20L10.5 12.5L3 11L10.5 9.5L12 2Z" fill="#FF5900"/>
+          </svg>
         </div>
 
         <h2 className="pathways__heading">
@@ -267,7 +268,7 @@ export default function Home() {
             <div className="pathways__card-body">
               <h3 className="pathways__card-title">1-on-1 &amp; Group Readings</h3>
               <p className="pathways__card-desc">
-                Interactive talks and podcast transforming anxiesty &amp; overwhelm to calm &amp; centered
+                Interactive talks and podcast transforming anxiety &amp; overwhelm to calm &amp; centered
               </p>
               <button className="pathways__card-btn">Book a Session</button>
             </div>
@@ -284,7 +285,7 @@ export default function Home() {
             </h3>
             <p className="pathways__card-desc pathways__card-desc--orange">
               Experience fun wellness games to regulate your nervous system - evidence based studies
-              &amp; student experience find result in 60 second or less
+              &amp; student experience find result in 60 seconds or less
             </p>
             <div className="pathways__card-img-wrap pathways__card-img-wrap--bottom">
               <img src={card2} alt="Courses and Workshops" className="pathways__card-img pathways__card-img--rounded" />
@@ -398,11 +399,11 @@ export default function Home() {
             </p>
 
             <h3 className="meet-swami__subheading">
-              About <em>Chakravedaa</em> —
+              About <em>Chakraveda</em> —
             </h3>
 
             <p className="meet-swami__highlight">
-              <strong>Chakravedaa is a guided system that helps you understand</strong>, align, and use your
+              <strong>Chakraveda is a guided system that helps you understand</strong>, align, and use your
               internal energy centers to create calm, <strong>clarity, and energy — often immediately.</strong>
             </p>
 
@@ -443,7 +444,7 @@ export default function Home() {
             <div className="books__btn-row">
               <button className="books__btn books__btn--solid">Buy on Amazon</button>
               <button className="books__btn books__btn--outline">Explore More Books</button>
-              
+
             </div>
           </div>
 
