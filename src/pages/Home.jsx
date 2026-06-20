@@ -17,6 +17,7 @@ import bookCoverAyurveda from "../assets/book-cover-ayurveda.png";
 import bookCoverMiracles from "../assets/book-cover-miracles.png";
 import blogSwamiVideo from "../assets/Rectangle_7__1_.png";
 import blogCard1Img from "../assets/Group_21__1_.png";
+import sparkVector from "../assets/Vector.svg";
 
 const slides = [
   {
@@ -238,9 +239,13 @@ export default function Home() {
       <section className="pathways">
         <div className="pathways__label-wrap">
           <div className="pathways__label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 6C2 4.89543 2.89543 4 4 4H9C10.6569 4 12 5.34315 12 7V19C12 17.8954 11.1046 17 10 17H4C2.89543 17 2 16.1046 2 15V6Z" stroke="#FF5900" strokeWidth="2" strokeLinejoin="round"/>
+              <path d="M22 6C22 4.89543 21.1046 4 20 4H15C13.3431 4 12 5.34315 12 7V19C12 17.8954 12.8954 17 14 17H20C21.1046 17 22 16.1046 22 15V6Z" stroke="#FF5900" strokeWidth="2" strokeLinejoin="round"/>
+            </svg>
             <span>Swami Services</span>
           </div>
-          <span className="pathways__label-spark">✦</span>
+          <img src={sparkVector} alt="" width={30} />
         </div>
 
         <h2 className="pathways__heading">
@@ -310,7 +315,9 @@ export default function Home() {
       <section className="collab">
         <div className="collab__label">
           <span className="collab__label-diamond">◇</span>
+          <span className="collab__label-line"></span>
           <span>Collaboration</span>
+          <span className="collab__label-line"></span>
           <span className="collab__label-diamond">◇</span>
         </div>
 
@@ -324,7 +331,10 @@ export default function Home() {
             <div className="collab__card-body">
               <div className="collab__card-top-row">
                 <h3 className="collab__card-title">Integrative Ayurveda</h3>
-                
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="5" stroke="#FF5900" strokeWidth="2"/>
+                  <path d="M7 13l-3 7 8-3 8 3-3-7" stroke="#FF5900" strokeWidth="2" strokeLinejoin="round"/>
+                </svg>
               </div>
               <p className="collab__card-subtitle">Co-teaching with Dr. Pat, MD</p>
               <h4 className="collab__card-heading">Integrative Ayurveda Certification</h4>
@@ -343,7 +353,10 @@ export default function Home() {
             <div className="collab__card-body">
               <div className="collab__card-top-row">
                 <h3 className="collab__card-title">Academic Pathways</h3>
-                
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M22 9L12 5 2 9l10 4 10-4z" stroke="#FF5900" strokeWidth="2" strokeLinejoin="round"/>
+                  <path d="M6 11v5c0 2 2.686 4 6 4s6-2 6-4v-5" stroke="#FF5900" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
               </div>
               <p className="collab__card-subtitle">Partnership with Akamai University</p>
               <h4 className="collab__card-heading">Academic Pathways &amp; CEU Credits</h4>
