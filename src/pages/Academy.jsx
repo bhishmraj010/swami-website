@@ -7,10 +7,18 @@ import academyChakraveda from "../assets/academy-chakraveda.png";
 import academyConsultation from "../assets/academy-consultation.png";
 import academyHands from "../assets/academy-hands.png";
 import academySwamiOrange from "../assets/academy-swami-orange.png";
+import doshaVata from "../assets/dosha-vata.png";
+import doshaPitta from "../assets/dosha-pitta.png";
+import doshaKapha from "../assets/dosha-kapha.png";
+import iconTV from "../assets/Icon.png";
+import iconStream from "../assets/Icon__1_.png";
+import iconMedal from "../assets/Icon__2_.png";
+import iconTime from "../assets/Icon__4_.png";
+import iconCheck from "../assets/Vector__1_.png";
+import iconBody from "../assets/SVG__1_.png";
 
 const navLinks = ["Service", "Books", "Products", "Academy", "Blog", "Contact"];
 
-/* ── Data ── */
 const streamingCourses = [
   {
     tag: "Streaming / On-demand",
@@ -46,17 +54,17 @@ const streamingCourses = [
 
 const doshas = [
   {
-    icon: "🌬️",
+    icon: doshaVata,
     element: "Air + Space",
     name: "Vata",
-    color: "#b8b0e8",
+    color: "#9b8fd9",
     bg: "linear-gradient(135deg, #e8e4f8 0%, #d4cff0 100%)",
     nature: "Movement & change",
     traits: "Creative, fast-thinking, energetic.",
     imbalance: "Anxiety, restlessness, overthink",
   },
   {
-    icon: "🔥",
+    icon: doshaPitta,
     element: "Fire + Water",
     name: "Pitta",
     color: "#e07a30",
@@ -66,7 +74,7 @@ const doshas = [
     imbalance: "Anger, burnout, irritation",
   },
   {
-    icon: "🌿",
+    icon: doshaKapha,
     element: "Earth + Water",
     name: "Kapha",
     color: "#5aab7a",
@@ -78,31 +86,19 @@ const doshas = [
 ];
 
 const playlists = [
-  { label: "TV Shows", active: true },
-  { label: "Podcasts", active: false },
-  { label: "Inner Peace", active: false },
-  { label: "Prophetic Dreams & Visions", active: false },
-  { label: "Mission Ignited", active: false },
-  { label: "Orange Cowboy Light Academy", active: false },
-  { label: "Swami is Interview", active: false },
+  { label: "TV Shows" },
+  { label: "Podcasts" },
+  { label: "Inner Peace" },
+  { label: "Prophetic Dreams & Visions" },
+  { label: "Mission Ignited" },
+  { label: "Orange Cowboy Light Academy" },
+  { label: "Swami is Interview" },
 ];
 
 const mediaVideos = [
-  {
-    img: academyChakraveda,
-    title: "Discover the Secrets of ChakraVeda Healing",
-    sub: "1 min method for anxiety relief",
-  },
-  {
-    img: academyConsultation,
-    title: "Herb & Supplement Education",
-    sub: "How to sit comfortably for 20 mins.",
-  },
-  {
-    img: academyHands,
-    title: "Ignite Your Life – with Radiance",
-    sub: "A cinematic introduction to the path.",
-  },
+  { img: academyChakraveda, title: "Discover the Secrets of ChakraVeda Healing", sub: "1 min method for anxiety relief" },
+  { img: academyConsultation, title: "Herb & Supplement Education", sub: "How to sit comfortably for 20 mins." },
+  { img: academyHands, title: "Ignite Your Life – with Radiance", sub: "A cinematic introduction to the path." },
 ];
 
 const instantCourses = [
@@ -149,9 +145,7 @@ export default function Academy() {
           <img src={logo} alt="Orange Cowboy Logo" />
         </div>
         <ul className="navbar__links">
-          <li>
-            <a href="/" className="navbar__link">Home</a>
-          </li>
+          <li><a href="/" className="navbar__link">Home</a></li>
           {navLinks.map((navItem) => (
             <li key={navItem}>
               <a
@@ -164,42 +158,24 @@ export default function Academy() {
           ))}
         </ul>
         <button className="navbar__cta">Connect</button>
-
-        {/* Hamburger — mobile only */}
-        <button
-          className="navbar__hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
+        <button className="navbar__hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open1" : ""}`} />
           <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open2" : ""}`} />
           <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open3" : ""}`} />
         </button>
       </nav>
 
-      {/* ── MOBILE MENU ── */}
       {menuOpen && (
         <div className="navbar__mobile-menu">
-          <a
-            href="/"
-            className="navbar__mobile-link"
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </a>
+          <a href="/" className="navbar__mobile-link" onClick={() => setMenuOpen(false)}>Home</a>
           {navLinks.map((navItem) => (
-            <a
-              key={navItem}
-              href={`/${navItem.toLowerCase()}`}
+            <a key={navItem} href={`/${navItem.toLowerCase()}`}
               className={`navbar__mobile-link ${navItem === "Academy" ? "navbar__mobile-link--active" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
+              onClick={() => setMenuOpen(false)}>
               {navItem}
             </a>
           ))}
-          <button className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
-            Connect
-          </button>
+          <button className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>Connect</button>
         </div>
       )}
 
@@ -208,12 +184,8 @@ export default function Academy() {
         <img src={academyHero} alt="Academy" className="ac-hero__bg" />
         <div className="ac-hero__overlay" />
         <div className="ac-hero__content">
-          <h1 className="ac-hero__title">
-            Orange Cowboy Light <em>Academy</em>
-          </h1>
-          <p className="ac-hero__sub">
-            Teachings · Meditations · Stories · Travel · Conversations
-          </p>
+          <h1 className="ac-hero__title">Orange Cowboy Light <em>Academy</em></h1>
+          <p className="ac-hero__sub">Teachings · Meditations · Stories · Travel · Conversations</p>
         </div>
         <button className="ac-hero__watch-btn">
           <span className="ac-hero__play">▶</span> Watch Featured
@@ -223,89 +195,43 @@ export default function Academy() {
       {/* ── STREAMING COURSES ── */}
       <section className="ac-streaming">
         <div className="ac-container">
-          <h2 className="ac-streaming__heading">
-            Streaming <em>Courses</em>
-          </h2>
-          <p className="ac-streaming__sub">
-            Join Swami in real-time for transformational training experiences.
-          </p>
+          <h2 className="ac-streaming__heading">Streaming <em>Courses</em></h2>
+          <p className="ac-streaming__sub">Join Swami in real-time for transformational training experiences.</p>
 
           <div className="ac-streaming__grid">
             {streamingCourses.map((c, i) => (
-              <div
-                key={i}
-                className="ac-course-card"
-                style={c.tagDark ? {
-                  background: "#ffffff",
-                  border: "1px solid #e8e0d8",
-                  borderRadius: "20px",
-                } : {}}
-              >
-                {/* Tag */}
-                <div
-                  className="ac-course-card__tag"
-                  style={c.tagDark ? {
-                    background: "#1c1c1e",
-                    color: "#fff",
-                    border: "none",
-                    letterSpacing: "0.1em",
-                  } : {}}
-                >
+              <div key={i} className="ac-course-card"
+                style={c.tagDark ? { background: "#1c1c1e", border: "1px solid #2a2a2a", borderRadius: "20px" } : {}}>
+
+                <div className="ac-course-card__tag"
+                  style={c.tagDark ? { background: "#3a3a3a", color: "#fff", border: "1px solid #4a4a4a", letterSpacing: "0.1em" } : {}}>
                   {c.tag}
                 </div>
 
-                {/* Title */}
-                <h3
-                  className="ac-course-card__title"
-                  style={c.tagDark ? { color: "#1a1a1a" } : {}}
-                >
-                  {c.title}
-                </h3>
+                <h3 className="ac-course-card__title" style={c.tagDark ? { color: "#fff" } : {}}>{c.title}</h3>
+                <p className="ac-course-card__desc" style={c.tagDark ? { color: "#aaaaaa" } : {}}>{c.desc}</p>
 
-                {/* Desc */}
-                <p
-                  className="ac-course-card__desc"
-                  style={c.tagDark ? { color: "#666666" } : {}}
-                >
-                  {c.desc}
-                </p>
-
-                {/* Features */}
                 <ul className="ac-course-card__features">
                   {c.features.map((f, j) => (
-                    <li
-                      key={j}
-                      style={c.tagDark ? { color: "#444444" } : {}}
-                    >
-                      <span className="ac-course-card__feat-icon">
-                        {j === 0 ? "📺" : "🏅"}
-                      </span>
+                    <li key={j} style={c.tagDark ? { color: "#bbbbbb" } : {}}>
+                      <img
+                        src={j === 0 ? iconStream : iconMedal}
+                        alt=""
+                        width={16} height={16}
+                        style={{ objectFit: "contain", flexShrink: 0 }}
+                      />
                       {f}
                     </li>
                   ))}
                 </ul>
 
-                {/* Price */}
-                <div
-                  className="ac-course-card__price"
-                  style={c.tagDark ? { color: "#1a1a1a", fontSize: "36px" } : {}}
-                >
+                <div className="ac-course-card__price"
+                  style={c.tagDark ? { color: "#fff", fontSize: "36px" } : {}}>
                   {c.price}
                 </div>
 
-                {/* Button */}
-                <button
-                  className="ac-course-card__btn"
-                  style={c.tagDark ? {
-                    background: "#ffffff",
-                    color: "#1c1c1e",
-                    fontWeight: "600",
-                    fontSize: "15px",
-                    padding: "15px 0",
-                    borderRadius: "50px",
-                    boxShadow: "none",
-                  } : {}}
-                >
+                <button className="ac-course-card__btn"
+                  style={c.tagDark ? { background: "#ffffff", color: "#1c1c1e", fontWeight: "600", fontSize: "15px", padding: "15px 0", borderRadius: "50px", boxShadow: "none" } : {}}>
                   {c.btnLabel}
                 </button>
               </div>
@@ -318,22 +244,21 @@ export default function Academy() {
       <section className="ac-dosha">
         <div className="ac-container">
           <div className="ac-dosha__eyebrow">
-            <span>🫀</span> Understand Your Body
+            <img src={iconBody} alt="" width={16} height={16} style={{ objectFit: "contain" }} />
+            Understand Your Body
           </div>
           <h2 className="ac-dosha__heading">
-            Your Body Has a <em>Natural Pattern.</em><br />
-            This is Your Dosha.
+            Your Body Has a <em>Natural Pattern.</em><br />This is Your Dosha.
           </h2>
           <p className="ac-dosha__sub">
             In Ayurveda, your physical, mental, and emotional tendencies are guided by your
-            Dosha — Vata, Pitta, or Kapha. Understanding it helps you bring balance,
-            not guesswork.
+            Dosha — Vata, Pitta, or Kapha. Understanding it helps you bring balance, not guesswork.
           </p>
 
           <div className="ac-dosha__cards">
             {doshas.map((d, i) => (
               <div key={i} className="ac-dosha__card" style={{ background: d.bg }}>
-                <span className="ac-dosha__card-icon">{d.icon}</span>
+                <img src={d.icon} alt={`${d.name} icon`} className="ac-dosha__card-icon" />
                 <p className="ac-dosha__card-element">{d.element}</p>
                 <h3 className="ac-dosha__card-name" style={{ color: d.color }}>{d.name}</h3>
                 <div className="ac-dosha__card-details">
@@ -346,12 +271,9 @@ export default function Academy() {
           </div>
 
           <div className="ac-dosha__cta-box">
-            <h3 className="ac-dosha__cta-title">
-              Discover Your <em>Dosha Profile</em>
-            </h3>
+            <h3 className="ac-dosha__cta-title">Discover Your <em>Dosha Profile</em></h3>
             <p className="ac-dosha__cta-desc">
-              Answer a few simple questions to understand your natural
-              tendencies and get personalized guidance.
+              Answer a few simple questions to understand your natural tendencies and get personalized guidance.
             </p>
             <button className="ac-dosha__cta-btn">Start Dosha Assessment</button>
           </div>
@@ -362,16 +284,12 @@ export default function Academy() {
       <section className="ac-playlist-section">
         <div className="ac-container ac-playlist-section__grid">
           <div className="ac-playlist">
-            <h2 className="ac-playlist__heading">
-              Browse <em>Playlist</em>
-            </h2>
+            <h2 className="ac-playlist__heading">Browse <em>Playlist</em></h2>
             <ul className="ac-playlist__list">
               {playlists.map((p, i) => (
-                <li
-                  key={i}
+                <li key={i}
                   className={`ac-playlist__item ${activePlaylist === i ? "ac-playlist__item--active" : ""}`}
-                  onClick={() => setActivePlaylist(i)}
-                >
+                  onClick={() => setActivePlaylist(i)}>
                   {p.label}
                 </li>
               ))}
@@ -381,12 +299,8 @@ export default function Academy() {
           <div className="ac-featured-video">
             <img src={academyMeditation} alt="Featured" className="ac-featured-video__img" />
             <div className="ac-featured-video__overlay">
-              <h3 className="ac-featured-video__title">
-                Instant Meditation for Anxiety &amp; Calm
-              </h3>
-              <p className="ac-featured-video__sub">
-                A simple 1-minute practice to reset your mind and body
-              </p>
+              <h3 className="ac-featured-video__title">Instant Meditation for Anxiety &amp; Calm</h3>
+              <p className="ac-featured-video__sub">A simple 1-minute practice to reset your mind and body</p>
               <div className="ac-featured-video__yt-icon">▶</div>
             </div>
             <div className="ac-featured-video__btns">
@@ -404,7 +318,7 @@ export default function Academy() {
         <div className="ac-container">
           <div className="ac-media__header">
             <h2 className="ac-media__heading">
-              <span className="ac-media__tv">📺</span>{" "}
+              <img src={iconTV} alt="" width={22} height={22} style={{ objectFit: "contain" }} />{" "}
               Swami Interviews &amp; <em>Media Appearances</em>
             </h2>
             <a href="#" className="ac-media__explore">Explore more Videos →</a>
@@ -488,9 +402,12 @@ export default function Academy() {
                   <ul className="ac-instant__card-features">
                     {c.features.map((f, j) => (
                       <li key={j}>
-                        <span className="ac-instant__feat-icon">
-                          {j === 0 ? "🕐" : j === 1 ? "✓" : "🏅"}
-                        </span>
+                        <img
+                          src={j === 0 ? iconTime : j === 1 ? iconCheck : iconMedal}
+                          alt=""
+                          width={14} height={14}
+                          style={{ objectFit: "contain", flexShrink: 0, marginTop: "2px" }}
+                        />
                         {f}
                       </li>
                     ))}
@@ -511,14 +428,12 @@ export default function Academy() {
           <div className="ac-speak__card">
             <div className="ac-speak__content">
               <span className="ac-speak__eyebrow">INVITE SWAMI TO SPEAK</span>
-              <h2 className="ac-speak__heading">
-                Schools, Charities &amp; Wellness Associations
-              </h2>
+              <h2 className="ac-speak__heading">Schools, Charities &amp; Wellness Associations</h2>
               <p className="ac-speak__desc">
                 Bring the wisdom of{" "}
                 <a href="#" className="ac-speak__link">Orange Cowboy Light Academy</a>{" "}
-                to your organization. Inspiring talks on mindfulness, spiritual
-                resilience, and discovering one's higher purpose.
+                to your organization. Inspiring talks on mindfulness, spiritual resilience,
+                and discovering one's higher purpose.
               </p>
               <button className="ac-speak__btn">Request Speaking</button>
             </div>
