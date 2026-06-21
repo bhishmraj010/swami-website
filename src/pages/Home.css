@@ -117,6 +117,120 @@ body {
   transform: scale(1.03);
 }
 
+/* ═══════════════════════════════════════
+   NAVBAR — HAMBURGER & MOBILE MENU
+   (Yeh block Home.css ke END mein paste karo)
+═══════════════════════════════════════ */
+
+/* ── Hamburger Button ── */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.navbar__hamburger:hover {
+  background: rgba(242, 106, 27, 0.08);
+}
+
+.navbar__ham-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #333;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar__ham-line--open1 {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__ham-line--open2 {
+  opacity: 0;
+}
+.navbar__ham-line--open3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile Dropdown Menu ── */
+.navbar__mobile-menu {
+  position: fixed;
+  top: 88px;
+  left: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  gap: 4px;
+  animation: menuSlideDown 0.25s ease;
+}
+
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.navbar__mobile-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar__mobile-link:hover {
+  background: rgba(242, 106, 27, 0.08);
+  color: var(--orange);
+}
+
+.navbar__mobile-link--active {
+  background: var(--orange);
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.navbar__mobile-cta {
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.navbar__mobile-cta:hover {
+  background: var(--orange-light);
+}
+
+/* ── Mobile Breakpoint ── */
+@media (max-width: 768px) {
+  .navbar__links { display: none; }
+  .navbar__cta   { display: none; }
+  .navbar__hamburger { display: flex; }
+}
+
 /* ─────────────────────────────────────────────
    HERO SLIDER
    ───────────────────────────────────────────── */
