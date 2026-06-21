@@ -133,6 +133,7 @@ export default function Home() {
   const [activeFaqTab, setActiveFaqTab] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
   const [blogStart, setBlogStart] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false); // ← ADDED
 
   const prevBlog = () => setBlogStart((p) => (p === 0 ? blogs.length - 2 : p - 1));
   const nextBlog = () => setBlogStart((p) => (p + 1) % (blogs.length - 1));
@@ -169,6 +170,7 @@ export default function Home() {
 
   return (
     <div className="home-wrapper">
+
       {/* ── NAVBAR ── */}
       <nav className="navbar">
         <div className="navbar__logo">
@@ -176,20 +178,52 @@ export default function Home() {
         </div>
         <ul className="navbar__links">
           <li>
-            <a href="/" className="navbar__link navbar__link--active">
-              Home
-            </a>
+            <a href="/" className="navbar__link navbar__link--active">Home</a>
           </li>
           {navLinks.map((link) => (
             <li key={link}>
-              <a href={`/${link.toLowerCase()}`} className="navbar__link">
-                {link}
-              </a>
+              <a href={`/${link.toLowerCase()}`} className="navbar__link">{link}</a>
             </li>
           ))}
         </ul>
         <button className="navbar__cta">Connect</button>
+        {/* ── HAMBURGER BUTTON ── */}
+        <button
+          className="navbar__hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open1" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open2" : ""}`} />
+          <span className={`navbar__ham-line ${menuOpen ? "navbar__ham-line--open3" : ""}`} />
+        </button>
       </nav>
+
+      {/* ── MOBILE MENU ── */}
+      {menuOpen && (
+        <div className="navbar__mobile-menu">
+          <a
+            href="/"
+            className="navbar__mobile-link navbar__mobile-link--active"
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link}
+              href={`/${link.toLowerCase()}`}
+              className="navbar__mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link}
+            </a>
+          ))}
+          <button className="navbar__mobile-cta" onClick={() => setMenuOpen(false)}>
+            Connect
+          </button>
+        </div>
+      )}
 
       {/* ── HERO SLIDER ── */}
       <section className="hero">
@@ -446,7 +480,6 @@ export default function Home() {
             <div className="books__btn-row">
               <button className="books__btn books__btn--solid">Buy on Amazon</button>
               <button className="books__btn books__btn--outline">Explore More Books</button>
-
             </div>
           </div>
 
@@ -602,6 +635,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+
     </div>
   );
 }
